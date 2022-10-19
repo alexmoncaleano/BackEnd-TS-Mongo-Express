@@ -8,6 +8,8 @@ const morgan_1 = __importDefault(require("morgan"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const ConexionDB_1 = __importDefault(require("./ConexionDB"));
+const PerfilRuta_1 = __importDefault(require("../rutes/PerfilRuta"));
+const GoodsRutes_1 = __importDefault(require("../rutes/GoodsRutes"));
 class Servidor {
     //creamos un constructor
     constructor() {
@@ -30,7 +32,8 @@ class Servidor {
     }
     ;
     iniciarRutas() {
-        //no hemos visto rutas
+        this.app.use("/api/perfiles", PerfilRuta_1.default);
+        this.app.use("/api/goods", GoodsRutes_1.default);
     }
     ;
     iniciarServidor() {

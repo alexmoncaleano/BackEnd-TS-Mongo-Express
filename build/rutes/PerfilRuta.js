@@ -8,12 +8,12 @@ const PerfilControlador_1 = __importDefault(require("../controller/PerfilControl
 class PerfilRuta {
     constructor() {
         this.rutaApiPerfil = (0, express_1.Router)();
-        this.configuracion();
+        this.configRutesPerfil();
     }
-    configuracion() {
-        this.rutaApiPerfil.get("/list", PerfilControlador_1.default.list);
-        this.rutaApiPerfil.post("/create", PerfilControlador_1.default.create);
-        this.rutaApiPerfil.delete("/delete/:codigo", PerfilControlador_1.default.delete);
+    configRutesPerfil() {
+        this.rutaApiPerfil.get("/list", PerfilControlador_1.default.listPerfil);
+        this.rutaApiPerfil.post("/create", PerfilControlador_1.default.createPerfil);
+        this.rutaApiPerfil.delete("/delete/:codigo", PerfilControlador_1.default.deletePerfil);
     }
 }
 const perfilRuta = new PerfilRuta();

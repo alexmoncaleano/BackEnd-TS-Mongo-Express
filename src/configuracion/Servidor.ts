@@ -3,6 +3,8 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import express from "express";
 import ConexionDB from "./ConexionDB";
+import apiPerfilRuta from "../rutes/PerfilRuta";
+import apigoodsRutes from "../rutes/GoodsRutes";
 
 class Servidor{
     //definimos la variable para configurar todo lo que ponemos hacer en la base
@@ -28,7 +30,8 @@ class Servidor{
     };
 
     public iniciarRutas(){
-        //no hemos visto rutas
+        this.app.use("/api/perfiles", apiPerfilRuta);
+        this.app.use("/api/goods", apigoodsRutes);
     };
 
     public iniciarServidor(){

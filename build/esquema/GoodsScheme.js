@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
+const GoodsScheme = new mongoose_1.Schema({
+    nameGoods: { type: String, required: true, unique: true, trim: true },
+    referenceGoods: { type: String, required: true, unique: true, trim: true },
+    priceGoods: { type: Number, required: true, unique: true, trim: true },
+    descripGoods: { type: String, required: true, unique: true, trim: true },
+    animalGoods: { type: String, required: true, unique: true, trim: true }
+}, { versionKey: false });

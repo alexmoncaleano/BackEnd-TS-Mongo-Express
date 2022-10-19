@@ -1,12 +1,12 @@
-import { PerfilEntidad } from "./../entidad/PerfilEntidad";
+import { PerfilEntidad } from "../entity/PerfilEntidad";
 import { Response } from "express";
-import PerfilEsquema from "../esquema/PerfilEsquema";
+import PerfilEsquema from "../scheme/PerfilEsquema";
 
 class PerfilDao {
   //Creamos una promesa
   protected static async consultarPerfiles(res: Response): Promise<any> {
     //async es que es un metodo asincrono, Promise<any> Significa que puede no haber respuesta
-    const datos = await PerfilEsquema.find(); //el await es lo que le dice que espere la respuesta de la promesa, se tiene que utilizar siempre con async
+    const datos = await PerfilEsquema.find().sort({_id:-1}); //el await es lo que le dice que espere la respuesta de la promesa, se tiene que utilizar siempre con async
     res.status(200).json(datos);
   }
 
@@ -47,7 +47,7 @@ class PerfilDao {
             .status(200)
             .json({
               respuesta: "Perfil eliminado correctamente",
-              eliminado: miObjeto.deleteCount,
+              eliminado: miObjeto.deletedCount
             });
         }
       });
