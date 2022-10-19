@@ -17,4 +17,4 @@ class PerfilRuta {
 }
 
 const perfilRuta = new PerfilRuta();
-expor
+export default perfilRuta.rutaApiPerfil;
