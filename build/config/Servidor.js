@@ -8,7 +8,7 @@ const morgan_1 = __importDefault(require("morgan"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const ConexionDB_1 = __importDefault(require("./ConexionDB"));
-const PerfilRuta_1 = __importDefault(require("../rutes/PerfilRuta"));
+const PerfilRutes_1 = __importDefault(require("../rutes/PerfilRutes"));
 const GoodsRutes_1 = __importDefault(require("../rutes/GoodsRutes"));
 const UserRutes_1 = __importDefault(require("../rutes/UserRutes"));
 class Servidor {
@@ -33,7 +33,7 @@ class Servidor {
     }
     ;
     iniciarRutas() {
-        this.app.use("/api/perfiles", PerfilRuta_1.default);
+        this.app.use("/api/perfiles", PerfilRutes_1.default);
         this.app.use("/api/goods", GoodsRutes_1.default);
         this.app.use("/api/User", UserRutes_1.default);
     }

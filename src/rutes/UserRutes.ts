@@ -12,8 +12,9 @@ class UserRutes{
 
     };
     public configRutesUser(): void{
-        this.rutaApiUser.get("/list", UserController.listUser)
-        this.rutaApiUser.post("/create", UserController.createUser)
+        this.rutaApiUser.get("/list", UserController.listUser);
+        this.rutaApiUser.post("/create", UserController.createUser);
+        this.rutaApiUser.delete("/delete/:codigo", UserController.deleteUser);
     }
 
 };

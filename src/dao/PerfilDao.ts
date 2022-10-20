@@ -1,6 +1,6 @@
-import { PerfilEntidad } from "../entity/PerfilEntidad";
+import { PerfilEntidad } from "../entity/PerfilEntity";
 import { Response } from "express";
-import PerfilEsquema from "../scheme/PerfilEsquema";
+import PerfilEsquema from "../scheme/PerfilScheme";
 
 class PerfilDao {
   //Creamos una promesa

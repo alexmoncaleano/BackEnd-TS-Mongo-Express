@@ -1,5 +1,5 @@
 import { Router } from "express";
-import perfilControlador from "../controller/PerfilControlador";
+import perfilControlador from "../controller/PerfilController";
 
 class PerfilRuta {
     public rutaApiPerfil: Router;

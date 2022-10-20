@@ -3,7 +3,7 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import express from "express";
 import ConexionDB from "./ConexionDB";
-import apiPerfilRuta from "../rutes/PerfilRuta";
+import apiPerfilRuta from "../rutes/PerfilRutes";
 import apiGoodsRutes from "../rutes/GoodsRutes";
 import apiUserRutes from "../rutes/UserRutes";
 
