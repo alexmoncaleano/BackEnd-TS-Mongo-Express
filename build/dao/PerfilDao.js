@@ -15,14 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const PerfilScheme_1 = __importDefault(require("../scheme/PerfilScheme"));
 class PerfilDao {
     //Creamos una promesa
-    static consultarPerfiles(res) {
+    static listPerfil(res) {
         return __awaiter(this, void 0, void 0, function* () {
             //async es que es un metodo asincrono, Promise<any> Significa que puede no haber respuesta
             const datos = yield PerfilScheme_1.default.find().sort({ _id: -1 }); //el await es lo que le dice que espere la respuesta de la promesa, se tiene que utilizar siempre con async
             res.status(200).json(datos);
         });
     }
-    static crearPefil(parametros, res) {
+    static createPefil(parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const existe = yield PerfilScheme_1.default.findOne(parametros);
             if (existe) {
@@ -46,7 +46,7 @@ class PerfilDao {
             }
         });
     }
-    static eliminarPerfil(parametro, res) {
+    static deletePerfil(parametro, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const existe = yield PerfilScheme_1.default.findById(parametro);
             if (existe) {
@@ -66,6 +66,32 @@ class PerfilDao {
             }
             else {
                 res.status(400).json({ respuesta: "No existe el perfil" });
+            }
+        });
+    }
+    static updatePerfil(codigo, parametros, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //const existe = await UserScheme.findById(codigo).exec();
+            //const existe = await UserSheme.findById({_id:codigo});
+            const existe = yield PerfilScheme_1.default.findById(codigo).exec();
+            if (existe) {
+                PerfilScheme_1.default.findByIdAndUpdate({ _id: codigo }, { $set: parametros }, (miError, miObjeto) => {
+                    if (miError) {
+                        res.status(400).json({ Respuesta: "No se puede actualizar el Perfil" });
+                    }
+                    else {
+                        res
+                            .status(200)
+                            .json({
+                            Respuesta: "Perfil Actualizado",
+                            Antiguo: miObjeto,
+                            Nuevo: parametros
+                        });
+                    }
+                });
+            }
+            else {
+                res.status(400).json({ Respuesta: "El perfil a actualizar no existe" });
             }
         });
     }

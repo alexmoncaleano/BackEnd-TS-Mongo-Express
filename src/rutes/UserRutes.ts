@@ -15,6 +15,7 @@ class UserRutes{
         this.rutaApiUser.get("/list", UserController.listUser);
         this.rutaApiUser.post("/create", UserController.createUser);
         this.rutaApiUser.delete("/delete/:codigo", UserController.deleteUser);
+        this.rutaApiUser.put("/update/:codigo", UserController.updateUser);
     }
 
 };

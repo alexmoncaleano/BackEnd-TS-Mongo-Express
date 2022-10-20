@@ -47,6 +47,32 @@ class UserDao {
       res.status(400).json({ respuesta: "No existe el Usuario" });
     }
   }
+  protected static async updateUser(codigo: string, parametros: any, res: Response): Promise<any> {
+    //const existe = await UserScheme.findById(codigo).exec();
+    //const existe = await UserSheme.findById({_id:codigo});
+    const existe = await UserScheme.findById(codigo).exec();
+    if(existe){
+      UserScheme.findByIdAndUpdate(
+        {_id:codigo},
+        {$set:parametros},
+        (miError: any, miObjeto: any) => {
+          if (miError) {
+            res.status(400).json({Respuesta: "No se puede actualizar el Usuario"});
+          }else {
+            res
+            .status(200)
+            .json({
+              Respuesta: "Usuario Actualizado",
+              Antiguo: miObjeto,
+              Nuevo: parametros
+            });
+          }
+        }
+      );
+    }else {
+      res.status(400).json({Respuesta: "El Usuario a actualizar no existe"});
+    }
+  }
 }
 
 export default UserDao;

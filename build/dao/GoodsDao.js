@@ -33,14 +33,61 @@ class GoodsDao {
                         res.status(400).json({ respuesta: "No se puede crear el articulo" });
                     }
                     else {
-                        res
-                            .status(200)
-                            .json({
+                        res.status(200).json({
                             respuesta: "Articulo creado exitosamente",
                             codigo: miObjeto._id,
                         });
                     }
                 });
+            }
+        });
+    }
+    static deleteGoods(parametro, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const existe = yield GoodsScheme_1.default.findById(parametro);
+            if (existe) {
+                GoodsScheme_1.default.deleteOne({ parametro }, (miError, miObjeto) => {
+                    if (miError) {
+                        res
+                            .status(400)
+                            .json({ respuesta: "No se puede eliminar el Articulo" });
+                    }
+                    else {
+                        res.status(200).json({
+                            respuesta: "Articulo eliminado correctamente",
+                            eliminado: miObjeto.deletedCount,
+                        });
+                    }
+                });
+            }
+            else {
+                res.status(400).json({ respuesta: "No existe el Articulo" });
+            }
+        });
+    }
+    static updateGoods(codigo, parametros, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //const existe = await UserScheme.findById(codigo).exec();
+            //const existe = await UserSheme.findById({_id:codigo});
+            const existe = yield GoodsScheme_1.default.findById(codigo).exec();
+            if (existe) {
+                GoodsScheme_1.default.findByIdAndUpdate({ _id: codigo }, { $set: parametros }, (miError, miObjeto) => {
+                    if (miError) {
+                        res
+                            .status(400)
+                            .json({ Respuesta: "No se puede actualizar el Articulo" });
+                    }
+                    else {
+                        res.status(200).json({
+                            Respuesta: "Articulo actualizado",
+                            Antiguo: miObjeto,
+                            Nuevo: parametros,
+                        });
+                    }
+                });
+            }
+            else {
+                res.status(400).json({ Respuesta: "El Articulo a actualizar no existe" });
             }
         });
     }

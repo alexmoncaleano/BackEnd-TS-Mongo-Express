@@ -11,6 +11,9 @@ class UserController extends UserDao {
   public deleteUser(req: Request, res: Response): void {
     UserController.deleteUser(req.params.codigo, res);
   }
+  public updateUser(req: Request, res: Response): void {
+    UserController.updateUser(req.params.codigo,req.body, res);
+  }
 }
 
 const userController = new UserController();

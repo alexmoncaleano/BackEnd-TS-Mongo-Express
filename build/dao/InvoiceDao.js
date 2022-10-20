@@ -12,29 +12,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const UserScheme_1 = __importDefault(require("../scheme/UserScheme"));
-class UserDao {
-    static listUser(res) {
+const InvoiceScheme_1 = __importDefault(require("../scheme/InvoiceScheme"));
+class InvoiceDao {
+    static listInvoice(res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const datos = yield UserScheme_1.default.find().sort({ _id: -1 });
+            const datos = yield InvoiceScheme_1.default.find().sort({ _id: -1 });
             res.status(200).json(datos);
         });
     }
-    static createUser(parametros, res) {
+    static createInvoice(parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const existe = yield UserScheme_1.default.findOne(parametros);
+            const existe = yield InvoiceScheme_1.default.findOne(parametros);
             if (existe) {
-                res.status(400).json({ respuesta: "El usuario ya existe" });
+                res.status(400).json({ respuesta: "La Factura ya existe" });
             }
             else {
-                const objUser = new UserScheme_1.default(parametros);
-                objUser.save((miError, miObjeto) => {
+                const objInvoice = new InvoiceScheme_1.default(parametros);
+                objInvoice.save((miError, miObjeto) => {
                     if (miError) {
-                        res.status(400).json({ respuesta: "No se puede crear el usuario" });
+                        res.status(400).json({ respuesta: "No se puede crear la factura" });
                     }
                     else {
                         res.status(200).json({
-                            respuesta: "Usuario creado exitosamente",
+                            respuesta: "Factura creada exitosamente",
                             codigo: miObjeto._id,
                         });
                     }
@@ -42,54 +42,54 @@ class UserDao {
             }
         });
     }
-    static deleteUser(parametro, res) {
+    static deleteInvoice(parametro, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const existe = yield UserScheme_1.default.findById(parametro);
+            const existe = yield InvoiceScheme_1.default.findById(parametro);
             if (existe) {
-                UserScheme_1.default.deleteOne({ parametro }, (miError, miObjeto) => {
+                InvoiceScheme_1.default.deleteOne({ parametro }, (miError, miobjeto) => {
                     if (miError) {
                         res
                             .status(400)
-                            .json({ respuesta: "No se puede eliminar el Usuario" });
+                            .json({ respuesta: "No se puede eliminar la Factura" });
                     }
                     else {
                         res.status(200).json({
-                            respuesta: "Usuario eliminado correctamente",
-                            eliminado: miObjeto.deletedCount,
+                            respuesta: "Factura eliminada correctamente",
+                            eliminado: miobjeto.deletedCount,
                         });
                     }
                 });
             }
             else {
-                res.status(400).json({ respuesta: "No existe el Usuario" });
+                res.status(400).json({ respuesta: "No existe la Factura" });
             }
         });
     }
-    static updateUser(codigo, parametros, res) {
+    static updatearticulos(codigo, parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
             //const existe = await UserScheme.findById(codigo).exec();
             //const existe = await UserSheme.findById({_id:codigo});
-            const existe = yield UserScheme_1.default.findById(codigo).exec();
+            const existe = yield InvoiceScheme_1.default.findById(codigo).exec();
             if (existe) {
-                UserScheme_1.default.findByIdAndUpdate({ _id: codigo }, { $set: parametros }, (miError, miObjeto) => {
+                InvoiceScheme_1.default.findByIdAndUpdate({ _id: codigo }, { $set: parametros }, (miError, miObjeto) => {
                     if (miError) {
-                        res.status(400).json({ Respuesta: "No se puede actualizar el Usuario" });
+                        res
+                            .status(400)
+                            .json({ Respuesta: "No se puede actualizar la factura" });
                     }
                     else {
-                        res
-                            .status(200)
-                            .json({
-                            Respuesta: "Usuario Actualizado",
+                        res.status(200).json({
+                            Respuesta: "Factura actualizado",
                             Antiguo: miObjeto,
-                            Nuevo: parametros
+                            Nuevo: parametros,
                         });
                     }
                 });
             }
             else {
-                res.status(400).json({ Respuesta: "El Usuario a actualizar no existe" });
+                res.status(400).json({ Respuesta: "La factura a actualizar no existe" });
             }
         });
     }
 }
-exports.default = UserDao;
+exports.default = InvoiceDao;

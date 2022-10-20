@@ -3,13 +3,16 @@ import { Request, Response } from "express";
 
 class PerfilControlador extends PerfilDao {
   public listPerfil(req: Request, res: Response): void {
-    PerfilControlador.consultarPerfiles(res);
+    PerfilControlador.listPerfil(res);
   }
   public createPerfil(req: Request, res: Response): void {
-    PerfilControlador.crearPefil(req.body, res); //el res es un objeto de tipo respons, es la capacidad que tiene el backend de dar una respuesta.
+    PerfilControlador.createPefil(req.body, res); //el res es un objeto de tipo respons, es la capacidad que tiene el backend de dar una respuesta.
   }
   public deletePerfil(req: Request, res: Response): void {
-    PerfilControlador.eliminarPerfil(req.params.codigo, res);
+    PerfilControlador.deletePerfil(req.params.codigo, res);
+  }
+  public updatePerfil(req: Request, res: Response): void {
+    PerfilControlador.updatePerfil(req.params.codigo,req.body, res);
   }
 }
 

@@ -14,6 +14,9 @@ class UserController extends UserDao_1.default {
     deleteUser(req, res) {
         UserController.deleteUser(req.params.codigo, res);
     }
+    updateUser(req, res) {
+        UserController.updateUser(req.params.codigo, req.body, res);
+    }
 }
 const userController = new UserController();
 exports.default = userController;
