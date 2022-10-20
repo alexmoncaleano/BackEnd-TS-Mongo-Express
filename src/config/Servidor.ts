@@ -4,7 +4,8 @@ import dotenv from "dotenv";
 import express from "express";
 import ConexionDB from "./ConexionDB";
 import apiPerfilRuta from "../rutes/PerfilRuta";
-import apigoodsRutes from "../rutes/GoodsRutes";
+import apiGoodsRutes from "../rutes/GoodsRutes";
+import apiUserRutes from "../rutes/UserRutes";
 
 class Servidor{
     //definimos la variable para configurar todo lo que ponemos hacer en la base
@@ -31,7 +32,8 @@ class Servidor{
 
     public iniciarRutas(){
         this.app.use("/api/perfiles", apiPerfilRuta);
-        this.app.use("/api/goods", apigoodsRutes);
+        this.app.use("/api/goods", apiGoodsRutes);
+        this.app.use("/api/User", apiUserRutes);
     };
 
     public iniciarServidor(){

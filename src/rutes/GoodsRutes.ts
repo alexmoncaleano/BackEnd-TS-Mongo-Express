@@ -1,7 +1,7 @@
 import { Router } from "express";
 import goodsController from "../controller/GoodsController";
 
-class GoodsRuta{
+class GoodsRutes{
     //se define una variable tipo router
     public rutaApiGoods: Router;
 
@@ -12,11 +12,11 @@ class GoodsRuta{
 
     };
     public configrRutesGoods(): void{
-        this.rutaApiGoods.get("/listGoods", goodsController.listGoods)
-        this.rutaApiGoods.post("/createGoods", goodsController.createGoods)
+        this.rutaApiGoods.get("/list", goodsController.listGoods)
+        this.rutaApiGoods.post("/create", goodsController.createGoods)
     }
 
 };
 
-const goodsRuta = new GoodsRuta();
+const goodsRuta = new GoodsRutes();
 export default goodsRuta.rutaApiGoods;

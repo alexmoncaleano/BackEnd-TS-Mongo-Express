@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const GoodsController_1 = __importDefault(require("../controller/GoodsController"));
-class GoodsRuta {
+class GoodsRutes {
     //iniciamos la variable de ruta
     constructor() {
         this.rutaApiGoods = (0, express_1.Router)();
@@ -13,10 +13,10 @@ class GoodsRuta {
     }
     ;
     configrRutesGoods() {
-        this.rutaApiGoods.get("/listGoods", GoodsController_1.default.listGoods);
-        this.rutaApiGoods.post("/createGoods", GoodsController_1.default.createGoods);
+        this.rutaApiGoods.get("/list", GoodsController_1.default.listGoods);
+        this.rutaApiGoods.post("/create", GoodsController_1.default.createGoods);
     }
 }
 ;
-const goodsRuta = new GoodsRuta();
+const goodsRuta = new GoodsRutes();
 exports.default = goodsRuta.rutaApiGoods;
