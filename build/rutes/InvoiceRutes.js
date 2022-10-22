@@ -8,14 +8,14 @@ const InvoiceController_1 = __importDefault(require("../controller/InvoiceContro
 class InvoiceRutes {
     constructor() {
         this.rutaApiInvoice = (0, express_1.Router)();
-        this.configRuteInvoice = ();
+        this.configRuteInvoice();
     }
     ;
     configRuteInvoice() {
         this.rutaApiInvoice.get("/list", InvoiceController_1.default.listInvoice);
         this.rutaApiInvoice.post("/create", InvoiceController_1.default.createInvoice);
         this.rutaApiInvoice.delete("/delete/:codigo", InvoiceController_1.default.deleteInvoice);
-        this.rutaApiInvoice.put("/update/:codigo", InvoiceController_1.default.);
+        this.rutaApiInvoice.put("/update/:codigo", InvoiceController_1.default.updateInvoice);
     }
 }
 ;

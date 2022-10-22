@@ -33,6 +33,7 @@ class PerfilDao {
       });
     }
   }
+
   public static async deletePerfil(
     parametro: any,
     res: Response
@@ -55,6 +56,7 @@ class PerfilDao {
       res.status(400).json({ respuesta: "No existe el perfil" });
     }
   }
+
   protected static async updatePerfil(codigo: string, parametros: any, res: Response): Promise<any> {
     //const existe = await UserScheme.findById(codigo).exec();
     //const existe = await UserSheme.findById({_id:codigo});
@@ -81,6 +83,7 @@ class PerfilDao {
       res.status(400).json({Respuesta: "El perfil a actualizar no existe"});
     }
   }
+  
 }
 
 export default PerfilDao; //para poder utilizar tu codigo en el proyecto tienes que importarlo.

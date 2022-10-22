@@ -6,8 +6,9 @@ class UserController extends UserDao {
     UserController.listUser(res);
   }
   public createUser(req: Request, res: Response): void {
-    UserController.createUser(req.body, res); //el res es un objeto de tipo respons, es la capacidad que tiene el backend de dar una respuesta.
-  }
+    const Correo = {correoUsuario:req.body.correoUsuario}
+    UserController.createUser(Correo, req.body, res); //el res es un objeto de tipo respons, es la capacidad que tiene el backend de dar una respuesta.
+  } 
   public deleteUser(req: Request, res: Response): void {
     UserController.deleteUser(req.params.codigo, res);
   }

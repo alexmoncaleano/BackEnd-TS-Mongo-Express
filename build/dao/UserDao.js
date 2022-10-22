@@ -20,11 +20,11 @@ class UserDao {
             res.status(200).json(datos);
         });
     }
-    static createUser(parametros, res) {
+    static createUser(correo, parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const existe = yield UserScheme_1.default.findOne(parametros);
+            const existe = yield UserScheme_1.default.findOne(correo);
             if (existe) {
-                res.status(400).json({ respuesta: "El usuario ya existe" });
+                res.status(400).json({ respuesta: "El correo ya existe" });
             }
             else {
                 const objUser = new UserScheme_1.default(parametros);

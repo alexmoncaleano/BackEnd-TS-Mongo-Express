@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import invoiceController from '../controller/InvoiceController';
+import InvoiceController from '../controller/InvoiceController';
 
 
 class InvoiceRutes{
@@ -8,14 +8,14 @@ class InvoiceRutes{
 
     constructor(){
         this.rutaApiInvoice = Router();
-        this.configRuteInvoice = (); 
+        this.configRuteInvoice(); 
     };
 
     public configRuteInvoice(): void{
-        this.rutaApiInvoice.get("/list", invoiceController.listInvoice);
-        this.rutaApiInvoice.post("/create", invoiceController.createInvoice);
-        this.rutaApiInvoice.delete("/delete/:codigo", invoiceController.deleteInvoice);
-        this.rutaApiInvoice.put("/update/:codigo",invoiceController.updateInvoice);
+        this.rutaApiInvoice.get("/list", InvoiceController.listInvoice);
+        this.rutaApiInvoice.post("/create", InvoiceController.createInvoice);
+        this.rutaApiInvoice.delete("/delete/:codigo", InvoiceController.deleteInvoice);
+        this.rutaApiInvoice.put("/update/:codigo",InvoiceController.updateInvoice);
     }
 
 };

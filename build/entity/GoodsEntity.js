@@ -2,12 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GoodsEntity = void 0;
 class GoodsEntity {
-    constructor(nomG, referG, priceG, animalG, descripG) {
+    constructor(nomG, referG, priceG, animalG, descripG, amountG, stockG) {
         this.nameGoods = nomG;
         this.referenceGoods = referG;
         this.priceGoods = priceG;
         this.animalGoods = animalG;
         this.descripGoods = descripG;
+        this.amountGoods = amountG;
+        this.stocktakingGoods = stockG;
     }
 }
 exports.GoodsEntity = GoodsEntity;

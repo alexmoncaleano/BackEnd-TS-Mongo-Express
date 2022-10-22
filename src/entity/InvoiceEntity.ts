@@ -1,13 +1,14 @@
+import { GoodsEntity } from './GoodsEntity';
 export class InvoiceEntity{
     
     public idInvoice:string;
     public idUser:string;
-    public idGoodsOne:string;
-    public idGoodsTwo:string;
+    public idGoodsOne:GoodsEntity;
+    public idGoodsTwo:GoodsEntity;
     public totalPrice:number;
     public tax:number;
 
-    constructor(idinvoice:string, iduser:string, idgoodsone:string, idgoodstwo:string, totalprice:number, Tax:number){
+    constructor(idinvoice:string, iduser:string, idgoodsone:GoodsEntity, idgoodstwo:GoodsEntity, totalprice:number, Tax:number){
         this.idInvoice=idinvoice;
         this.idUser=iduser;
         this.idGoodsOne=idgoodsone;

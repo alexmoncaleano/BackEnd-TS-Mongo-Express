@@ -44,9 +44,9 @@ class InvoiceDao {
     }
     static deleteInvoice(parametro, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const existe = yield InvoiceScheme_1.default.findById(parametro);
+            const existe = yield InvoiceScheme_1.default.findById(parametro).exec();
             if (existe) {
-                InvoiceScheme_1.default.deleteOne({ parametro }, (miError, miobjeto) => {
+                InvoiceScheme_1.default.findOneAndDelete({ parametro }, (miError, miobjeto) => {
                     if (miError) {
                         res
                             .status(400)
@@ -65,7 +65,7 @@ class InvoiceDao {
             }
         });
     }
-    static updatearticulos(codigo, parametros, res) {
+    static updateInvoice(codigo, parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
             //const existe = await UserScheme.findById(codigo).exec();
             //const existe = await UserSheme.findById({_id:codigo});

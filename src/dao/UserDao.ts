@@ -7,13 +7,12 @@ class UserDao {
     res.status(200).json(datos);
   }
 
-  protected static async createUser(
-    parametros: any,
+  protected static async createUser(correo:any, parametros: any,
     res: Response
   ): Promise<any> {
-    const existe = await UserScheme.findOne(parametros);
+    const existe = await UserScheme.findOne(correo);
     if (existe) {
-      res.status(400).json({ respuesta: "El usuario ya existe" });
+      res.status(400).json({ respuesta: "El correo ya existe" });
     } else {
       const objUser = new UserScheme(parametros);
       objUser.save((miError, miObjeto) => {

@@ -6,7 +6,6 @@ class InvoiceDao {
     const datos = await InvoiceScheme.find().sort({ _id: -1 });
     res.status(200).json(datos);
   }
-
   protected static async createInvoice(
     parametros: any,
     res: Response
@@ -28,14 +27,13 @@ class InvoiceDao {
       });
     }
   }
-
   public static async deleteInvoice(
     parametro: any,
     res: Response
   ): Promise<any> {
-    const existe = await InvoiceScheme.findById(parametro);
+    const existe = await InvoiceScheme.findById(parametro).exec();
     if (existe) {
-      InvoiceScheme.deleteOne({ parametro }, (miError: any, miobjeto: any) => {
+      InvoiceScheme.findOneAndDelete({ parametro }, (miError: any, miobjeto: any) => {
         if (miError) {
           res
             .status(400)

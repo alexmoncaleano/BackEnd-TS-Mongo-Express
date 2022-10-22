@@ -14,7 +14,7 @@ class InvoiceController extends InvoiceDao_1.default {
     deleteInvoice(req, res) {
         InvoiceController.deleteInvoice(req.params.codigo, res);
     }
-    updateGoods(req, res) {
+    updateInvoice(req, res) {
         InvoiceController.updateInvoice(req.params.codigo, req.body, res);
     }
 }
