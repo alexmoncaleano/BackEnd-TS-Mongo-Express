@@ -9,8 +9,8 @@ class UserController extends UserDao_1.default {
         UserController.listUser(res);
     }
     createUser(req, res) {
-        const Correo = { correoUsuario: req.body.correoUsuario };
-        UserController.createUser(Correo, req.body, res); //el res es un objeto de tipo respons, es la capacidad que tiene el backend de dar una respuesta.
+        const email = { emailUser: req.body.emailUser };
+        UserController.createUser(email, req.body, res); //el res es un objeto de tipo respons, es la capacidad que tiene el backend de dar una respuesta.
     }
     deleteUser(req, res) {
         UserController.deleteUser(req.params.codigo, res);

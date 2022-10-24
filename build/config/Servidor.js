@@ -33,7 +33,7 @@ class Servidor {
     }
     ;
     iniciarRutas() {
-        this.app.use("/api/perfiles", PerfilRutes_1.default);
+        this.app.use("/api/perfil", PerfilRutes_1.default);
         this.app.use("/api/goods", GoodsRutes_1.default);
         this.app.use("/api/User", UserRutes_1.default);
     }

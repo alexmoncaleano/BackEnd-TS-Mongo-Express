@@ -14,6 +14,8 @@ class GoodsRutes{
     public configrRutesGoods(): void{
         this.rutaApiGoods.get("/list", goodsController.listGoods)
         this.rutaApiGoods.post("/create", goodsController.createGoods)
+        this.rutaApiGoods.delete("/delete/:codigo", goodsController.deleteGoods);
+        this.rutaApiGoods.put("/update/:codigo", goodsController.updateGoods);
     }
 
 };

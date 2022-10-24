@@ -18,7 +18,7 @@ class GoodsDao {
       const objGoods = new GoodsScheme(parametros);
       objGoods.save((miError, miObjeto) => {
         if (miError) {
-          res.status(400).json({ respuesta: "No se puede crear el articulo" });
+          res.status(400).json({ respuesta: "No se puede crear el articulo"+ miError });
         } else {
           res.status(200).json({
             respuesta: "Articulo creado exitosamente",
@@ -28,6 +28,7 @@ class GoodsDao {
       });
     }
   }
+
   public static async deleteGoods(parametro: any, res: Response): Promise<any> {
     const existe = await GoodsScheme.findById(parametro);
     if (existe) {
@@ -47,6 +48,7 @@ class GoodsDao {
       res.status(400).json({ respuesta: "No existe el Articulo" });
     }
   }
+  
   protected static async updateGoods(
     codigo: string,
     parametros: any,

@@ -14,6 +14,7 @@ class PerfilRuta {
         this.rutaApiPerfil.get("/list", PerfilController_1.default.listPerfil);
         this.rutaApiPerfil.post("/create", PerfilController_1.default.createPerfil);
         this.rutaApiPerfil.delete("/delete/:codigo", PerfilController_1.default.deletePerfil);
+        this.rutaApiPerfil.put("/update/:codigo", PerfilController_1.default.updatePerfil);
     }
 }
 const perfilRuta = new PerfilRuta();

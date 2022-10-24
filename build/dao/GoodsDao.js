@@ -30,7 +30,7 @@ class GoodsDao {
                 const objGoods = new GoodsScheme_1.default(parametros);
                 objGoods.save((miError, miObjeto) => {
                     if (miError) {
-                        res.status(400).json({ respuesta: "No se puede crear el articulo" });
+                        res.status(400).json({ respuesta: "No se puede crear el articulo" + miError });
                     }
                     else {
                         res.status(200).json({

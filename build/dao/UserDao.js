@@ -13,29 +13,37 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const UserScheme_1 = __importDefault(require("../scheme/UserScheme"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 class UserDao {
     static listUser(res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const datos = yield UserScheme_1.default.find().sort({ _id: -1 });
+            const datos = yield UserScheme_1.default.find().sort({ _id: -1 }).populate("codPerfil").exec();
             res.status(200).json(datos);
         });
     }
-    static createUser(correo, parametros, res) {
+    static createUser(emailUser, parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const existe = yield UserScheme_1.default.findOne(correo);
+            const existe = yield UserScheme_1.default.findOne(emailUser).exec();
             if (existe) {
                 res.status(400).json({ respuesta: "El correo ya existe" });
             }
             else {
+                parametros.passwordUser = bcryptjs_1.default.hashSync(parametros.passwordUser, 8);
                 const objUser = new UserScheme_1.default(parametros);
                 objUser.save((miError, miObjeto) => {
                     if (miError) {
                         res.status(400).json({ respuesta: "No se puede crear el usuario" });
                     }
                     else {
+                        const datosVisibles = {
+                            codUser: miObjeto._id,
+                            emailUser: miObjeto.emailUser
+                        };
+                        const privateKey = String(process.env.CLAVE_SECRETA);
+                        const token = jsonwebtoken_1.default.sign(datosVisibles, privateKey, { expiresIn: 86400 });
                         res.status(200).json({
-                            respuesta: "Usuario creado exitosamente",
-                            codigo: miObjeto._id,
+                            token: token
                         });
                     }
                 });

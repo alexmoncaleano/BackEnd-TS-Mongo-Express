@@ -7,7 +7,9 @@ export class GoodsEntity{
     public animalGoods:string;
     public amountGoods:number;
     public stocktakingGoods:number;
-    constructor(nomG:string, referG:string, priceG:number, animalG:string, descripG:string, amountG:number, stockG: number ){
+    public imagenGoods:string;
+    constructor(nomG:string, referG:string, priceG:number, animalG:string, descripG:string, amountG:number, 
+        stockG: number, imagengoods:string){
         this.nameGoods=nomG;
         this.referenceGoods=referG;
         this.priceGoods=priceG;
@@ -15,6 +17,7 @@ export class GoodsEntity{
         this.descripGoods=descripG;
         this.amountGoods=amountG;
         this.stocktakingGoods=stockG;
+        this.imagenGoods=imagengoods;
     }
 }
 export default GoodsEntity;

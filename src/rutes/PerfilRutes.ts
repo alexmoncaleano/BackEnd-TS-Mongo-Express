@@ -12,6 +12,7 @@ class PerfilRuta {
         this.rutaApiPerfil.get("/list", perfilControlador.listPerfil);
         this.rutaApiPerfil.post("/create", perfilControlador.createPerfil);
         this.rutaApiPerfil.delete("/delete/:codigo", perfilControlador.deletePerfil);
+        this.rutaApiPerfil.put("/update/:codigo", perfilControlador.updatePerfil);
     }
     
 }

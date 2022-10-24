@@ -31,7 +31,7 @@ class Servidor{
     };
 
     public iniciarRutas(){
-        this.app.use("/api/perfiles", apiPerfilRuta);
+        this.app.use("/api/perfil", apiPerfilRuta);
         this.app.use("/api/goods", apiGoodsRutes);
         this.app.use("/api/User", apiUserRutes);
     };

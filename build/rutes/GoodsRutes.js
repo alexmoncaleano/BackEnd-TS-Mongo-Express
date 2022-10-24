@@ -15,6 +15,8 @@ class GoodsRutes {
     configrRutesGoods() {
         this.rutaApiGoods.get("/list", GoodsController_1.default.listGoods);
         this.rutaApiGoods.post("/create", GoodsController_1.default.createGoods);
+        this.rutaApiGoods.delete("/delete/:codigo", GoodsController_1.default.deleteGoods);
+        this.rutaApiGoods.put("/update/:codigo", GoodsController_1.default.updateGoods);
     }
 }
 ;
