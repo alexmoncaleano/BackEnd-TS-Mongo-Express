@@ -29,7 +29,7 @@ class UserDao {
                 res.status(400).json({ respuesta: "El correo ya existe" });
             }
             else {
-                parametros.passwordUser = bcryptjs_1.default.hashSync(parametros.passwordUser, 8);
+                parametros.passwordUser = bcryptjs_1.default.hashSync(parametros.passwordUser, 10);
                 const objUser = new UserScheme_1.default(parametros);
                 objUser.save((miError, miObjeto) => {
                     if (miError) {

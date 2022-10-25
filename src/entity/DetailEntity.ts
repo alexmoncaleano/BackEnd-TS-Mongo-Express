@@ -1,18 +1,15 @@
-/*import GoodsEntity from "./GoodsEntity";
+import SelectionEntity from "./SelectionEntity";
 import UserEntity from "./UserEntity";
 
-class DetailEntity{
+export class DetailEntity{
 
     public idUser:UserEntity;   
-    public listGoods:List<GoodsEntity>;
+    public list:Array<SelectionEntity>;
 
-    constructor(iduser:UserEntity, idGoodsa:GoodsEntity, idGoodsb:GoodsEntity, idGoodsc:GoodsEntity, idGoodsd:GoodsEntity, 
-        idGoodse:GoodsEntity,idGoodsf:GoodsEntity,idGoodsg:GoodsEntity,idGoodsh:GoodsEntity,idGoodsi:GoodsEntity,
-        idGoodsj:GoodsEntity,idGoodsk:GoodsEntity,idGoodsl:GoodsEntity,idGoodsm:GoodsEntity){
+    constructor(iduser:UserEntity, listgoods:Array<SelectionEntity>){
             
             this.idUser=iduser;
-            this.idGoodsA=idGoodsa;
-              
+            this.list=listgoods;    
         }
 }
-export default DetailEntity;*/
+export default DetailEntity;

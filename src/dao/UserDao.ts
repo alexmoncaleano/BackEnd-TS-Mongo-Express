@@ -17,7 +17,7 @@ class UserDao {
     if (existe) {
       res.status(400).json({ respuesta: "El correo ya existe" });
     } else {
-      parametros.passwordUser=cifrar.hashSync(parametros.passwordUser,8);
+      parametros.passwordUser=cifrar.hashSync(parametros.passwordUser,10);
       const objUser = new UserScheme(parametros);
       objUser.save((miError, miObjeto) => {
         if (miError) {

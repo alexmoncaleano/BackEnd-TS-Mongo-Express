@@ -79,6 +79,7 @@ class GoodsDao {
       res.status(400).json({ Respuesta: "El Articulo a actualizar no existe" });
     }
   }
+  
 }
 
 export default GoodsDao;
