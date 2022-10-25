@@ -17,9 +17,7 @@ const GoodsScheme_1 = __importDefault(require("../scheme/GoodsScheme"));
 class SelectionDao {
     static listSelectionById(idUser, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const datos = yield SelectionScheme_1.default.findById(idUser)
-                .sort({ _id: -1 })
-                .populate("idUser", "idGoods");
+            const datos = yield SelectionScheme_1.default.find(idUser).sort({ _id: -1 }).populate("idGoods").exec();
             res.status(200).json(datos);
         });
     }
@@ -44,7 +42,7 @@ class SelectionDao {
                                         .json({ respuesta: "No se puede crear la seleccion" });
                                 }
                                 else {
-                                    res.status(400).json({ respuesta: miObjeto });
+                                    res.status(200).json({ respuesta: miObjeto });
                                 }
                             });
                         }

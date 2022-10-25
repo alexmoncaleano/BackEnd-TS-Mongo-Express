@@ -8,9 +8,7 @@ class SelectionDao {
     idUser: any,
     res: Response
   ): Promise<any> {
-    const datos = await SelectionScheme.findById(idUser)
-      .sort({ _id: -1 })
-      .populate("idUser", "idGoods");
+    const datos = await SelectionScheme.find(idUser).sort({ _id: -1 }).populate("idGoods").exec();
     res.status(200).json(datos);
   }
   protected static async createSelection(
@@ -34,7 +32,7 @@ class SelectionDao {
                   .status(400)
                   .json({ respuesta: "No se puede crear la seleccion" });
               } else {
-                res.status(400).json({ respuesta: miObjeto });
+                res.status(200).json({ respuesta: miObjeto });
               }
             });
           } else {

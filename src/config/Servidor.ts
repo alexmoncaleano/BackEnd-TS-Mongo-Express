@@ -7,6 +7,7 @@ import apiPerfilRuta from "../rutes/PerfilRutes";
 import apiGoodsRutes from "../rutes/GoodsRutes";
 import apiUserRutes from "../rutes/UserRutes";
 import apiSelectionRutes from "../rutes/SelectionRutes";
+import seguridad from "../middleware/Seguridad";
 
 class Servidor{
     //definimos la variable para configurar todo lo que ponemos hacer en la base
@@ -32,7 +33,7 @@ class Servidor{
     };
 
     public iniciarRutas(){
-        this.app.use("/api/perfil", apiPerfilRuta);
+        this.app.use("/api/perfil",seguridad.verificarToken, apiPerfilRuta);
         this.app.use("/api/goods", apiGoodsRutes);
         this.app.use("/api/user", apiUserRutes);
         this.app.use("/api/selection", apiSelectionRutes);

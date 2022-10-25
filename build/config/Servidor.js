@@ -12,6 +12,7 @@ const PerfilRutes_1 = __importDefault(require("../rutes/PerfilRutes"));
 const GoodsRutes_1 = __importDefault(require("../rutes/GoodsRutes"));
 const UserRutes_1 = __importDefault(require("../rutes/UserRutes"));
 const SelectionRutes_1 = __importDefault(require("../rutes/SelectionRutes"));
+const Seguridad_1 = __importDefault(require("../middleware/Seguridad"));
 class Servidor {
     //creamos un constructor
     constructor() {
@@ -34,7 +35,7 @@ class Servidor {
     }
     ;
     iniciarRutas() {
-        this.app.use("/api/perfil", PerfilRutes_1.default);
+        this.app.use("/api/perfil", Seguridad_1.default.verificarToken, PerfilRutes_1.default);
         this.app.use("/api/goods", GoodsRutes_1.default);
         this.app.use("/api/user", UserRutes_1.default);
         this.app.use("/api/selection", SelectionRutes_1.default);
