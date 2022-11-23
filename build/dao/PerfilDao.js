@@ -13,34 +13,51 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const PerfilScheme_1 = __importDefault(require("../scheme/PerfilScheme"));
+const UserScheme_1 = __importDefault(require("../scheme/UserScheme"));
 class PerfilDao {
+    static obtenerUnPerfil(identificador, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const jsonPerfil = { _id: identificador };
+            const existePerfil = yield PerfilScheme_1.default.findOne(jsonPerfil).exec();
+            if (existePerfil) {
+                res.status(200).json(existePerfil);
+            }
+            else {
+                res
+                    .status(400)
+                    .json({ respuesta: "El perfil NO existe con ese identificador" });
+            }
+        });
+    }
     //Creamos una promesa
     static listPerfil(res) {
         return __awaiter(this, void 0, void 0, function* () {
             //async es que es un metodo asincrono, Promise<any> Significa que puede no haber respuesta
             const datos = yield PerfilScheme_1.default.find().sort({ _id: -1 }); //el await es lo que le dice que espere la respuesta de la promesa, se tiene que utilizar siempre con async
-            res.status(200).json(datos);
+            if (datos) {
+                res.status(200).json(datos);
+            }
+            else {
+                res.status(400).json({ respuesta: "NO existen perfiles" });
+            }
         });
     }
     static createPefil(parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            delete parametros._id;
+            delete parametros.datosUsuario;
             const existe = yield PerfilScheme_1.default.findOne(parametros);
             if (existe) {
                 res.status(400).json({ respuesta: "El perfil ya existe" });
             }
             else {
                 const objPerfil = new PerfilScheme_1.default(parametros);
-                objPerfil.save((miError, miObjeto) => {
+                objPerfil.save((miError, objeto) => {
                     if (miError) {
-                        res.status(400).json({ respuesta: "No se puede crear el perfil" });
+                        res.status(400).json({ respuesta: "Error al crear el Perfil" });
                     }
                     else {
-                        res
-                            .status(200)
-                            .json({
-                            respuesta: "Pefil creado exitosamente",
-                            codigo: miObjeto._id,
-                        });
+                        res.status(200).json({ id: objeto._id });
                     }
                 });
             }
@@ -48,24 +65,31 @@ class PerfilDao {
     }
     static deletePerfil(parametro, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const existe = yield PerfilScheme_1.default.findById(parametro);
-            if (existe) {
-                PerfilScheme_1.default.deleteOne({ parametro }, (miError, miObjeto) => {
-                    if (miError) {
-                        res.status(400).json({ respuesta: "No se puede eliminar" });
-                    }
-                    else {
-                        res
-                            .status(200)
-                            .json({
-                            respuesta: "Perfil eliminado correctamente",
-                            eliminado: miObjeto.deletedCount
-                        });
-                    }
-                });
+            const llave = { _id: parametro };
+            const cantidad = yield UserScheme_1.default.countDocuments({ codPerfil: llave });
+            if (cantidad > 0) {
+                res
+                    .status(400)
+                    .json({ respuesta: "Error, el perfil tiene usuarios relacionados" });
             }
             else {
-                res.status(400).json({ respuesta: "No existe el perfil" });
+                const existe = yield PerfilScheme_1.default.findById(parametro).exec();
+                if (existe) {
+                    PerfilScheme_1.default.deleteOne({ _id: parametro }, (miError, objeto) => {
+                        //PerfilEsquema.findByIdAndDelete(parametro, (miError: any, objeto: any) => {
+                        if (miError) {
+                            res
+                                .status(400)
+                                .json({ respuesta: "Error al eliminar el Perfil" });
+                        }
+                        else {
+                            res.status(200).json({ eliminado: objeto });
+                        }
+                    });
+                }
+                else {
+                    res.status(400).json({ respuesta: "El perfil NO existe" });
+                }
             }
         });
     }
@@ -77,15 +101,15 @@ class PerfilDao {
             if (existe) {
                 PerfilScheme_1.default.findByIdAndUpdate({ _id: codigo }, { $set: parametros }, (miError, miObjeto) => {
                     if (miError) {
-                        res.status(400).json({ Respuesta: "No se puede actualizar el Perfil" });
+                        res
+                            .status(400)
+                            .json({ Respuesta: "No se puede actualizar el Perfil" });
                     }
                     else {
-                        res
-                            .status(200)
-                            .json({
+                        res.status(200).json({
                             Respuesta: "Perfil Actualizado",
                             Antiguo: miObjeto,
-                            Nuevo: parametros
+                            Nuevo: parametros,
                         });
                     }
                 });
